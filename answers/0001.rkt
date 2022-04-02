@@ -20,6 +20,6 @@ The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 be
          (multiples-of-x-below-n 5 1000)))
 
 (define (solve input) 
-        (displayln (string-append "Solution: " (number->string (solution input)))))
+    (displayln (string-append "Solution: " (number->string (solution input)))))
 
 (solve 1000)
