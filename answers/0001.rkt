@@ -16,16 +16,37 @@
     #:solution 
     (begin 
         (let ()
-            (define (multiples-of-x-below-n x n (ans 0) (filter 0))
-                (displayln (string-append "DEBUG | x: " (number->string x) " n: " (number->string n) " ans: " (number->string ans)))
-                (if (> x n) 
-                    ans
-                    (multiples-of-x-below-n x (- n x) (+ ans n))))
+            (define (sum-multiples-of-x-below-n 
+                        #:step             step 
+                        #:max-number       max-number 
+                        #:current-number   (current-number 0) 
+                        #:total-sum        (total-sum 0)
+                        #:ignored-multiple (ignored-multiple 99999))
 
-            (define (sum x y)
-                (+ x y))
+                (cond
+                    [(>= current-number max-number) 
+                        total-sum]                                          ; Exit recursive function
+                    [(equal? (modulo current-number ignored-multiple) 0) 
+                        (sum-multiples-of-x-below-n 
+                            #:step              step 
+                            #:max-number        max-number 
+                            #:current-number    (+ current-number step) 
+                            #:total-sum         total-sum 
+                            #:ignored-multiple  ignored-multiple)]          ; Filter ignored multiples
+                    [else 
+                        (sum-multiples-of-x-below-n 
+                            #:step             step 
+                            #:max-number       max-number 
+                            #:current-number   (+ current-number step) 
+                            #:total-sum        (+ current-number total-sum) 
+                            #:ignored-multiple ignored-multiple)]))         ; Normal functionality
 
-            (lambda (x)
-                (sum (multiples-of-x-below-n 3 x) 
-                    (multiples-of-x-below-n 5 x)))))
+            (lambda (input)                                                 ; Calculate the solutions answer
+                (+ (sum-multiples-of-x-below-n 
+                        #:step             3
+                        #:max-number       input) 
+                   (sum-multiples-of-x-below-n 
+                        #:step             5 
+                        #:max-number       input
+                        #:ignored-multiple 3)))))
 )
