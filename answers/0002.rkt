@@ -11,11 +11,11 @@
 
     1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 
-    By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
+    By considering the terms in the Fibonacci sequence whose values do not exceed 10^10000, find the sum of the even-valued terms.
     "
 
     #:input
-    4000000
+    (expt 10 10000)
 
     #:solution
     (begin
@@ -35,7 +35,6 @@
 
             (define (solve x (fib-stream even-fibonacci-sequence) (accum 0))
                 (define fib-element (stream-first fib-stream))
-                (displayln fib-element)
                 (if (> fib-element x) 
                     accum
                     (solve x (stream-rest fib-stream) (+ accum fib-element))))
