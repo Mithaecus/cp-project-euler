@@ -35,8 +35,9 @@
 
             (define (solve x (fib-stream even-fibonacci-sequence) (accum 0))
                 (define fib-element (stream-first fib-stream))
+                (displayln fib-element)
                 (if (> fib-element x) 
                     accum
-                    (solve x (stream-rest even-fibonacci-sequence) (+ accum fib-element))))
+                    (solve x (stream-rest fib-stream) (+ accum fib-element))))
             
             (lambda (x) (solve x)))))
