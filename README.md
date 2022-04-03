@@ -1,2 +1,1 @@
-# cp-project-euler
-Competitive Programming: Project Euler
+# Competitive Programming: Project Euler
