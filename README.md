@@ -1,3 +1,6 @@
 # Competitive Programming: Project Euler
 
-https://projecteuler.net
+| Language    | # Completed |
+| ----------- | ------------|
+| Haskell     | 2           |
+| Racket      | 2           |
